@@ -27,7 +27,7 @@ brews:
       owner: borischen0203
       name: homebrew-goris
     folder: Formula
-    homepage:  https://goreleaser.com/borischen0203/goris
+    homepage:  https://github.com/borischen0203/goris
     description: A tool to get gopher image!
     license: MIT
     test: |
