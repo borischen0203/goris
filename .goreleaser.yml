@@ -6,21 +6,13 @@ before:
         - go mod tidy
         - go mod download
 builds:
-    - id: goris-darwin-amd64
-      binary: goris
-      env:
+    - env:
           - CGO_ENABLED=0
-          - GO111MODULE=on
-          - CC=o64-clang
-          - CXX=o64-clang++
+      # your entrypoint into your application
       main: ./main.go
-      goos:
-          - darwin
-      goarch:
-          - amd64
-      ignore:
-          - goos: darwin
-            goarch: 386
+      # the name of the binary that you want to generate - this will also be the binary name for when we get to homebrew...
+      # Example: ms checkin <code> where ms is the name of the binary
+      binary: goris
 
 brews:
   - tap:
