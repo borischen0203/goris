@@ -42,7 +42,6 @@ var getCmd = &cobra.Command{
 
 		if len(args) == 1 {
 			gopherName = args[0]
-			fmt.Println(gopherName)
 		}
 		if len(args) == 2 {
 			gopherName = args[0]

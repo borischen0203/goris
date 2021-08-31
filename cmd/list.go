@@ -68,7 +68,8 @@ var listCmd = &cobra.Command{
 			}
 			for i := 0; i < len(gopher.Tree); i++ {
 				if strings.Contains(gopher.Tree[i].Path, ".png") {
-					fmt.Println(gopher.Tree[i].Path)
+					result := strings.ReplaceAll(gopher.Tree[i].Path, ".png", "")
+					fmt.Println(result)
 				}
 			}
 		} else {
