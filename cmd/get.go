@@ -17,6 +17,9 @@ package cmd
 
 import (
 	"fmt"
+	_ "image/gif"
+	_ "image/jpeg"
+	_ "image/png"
 	"io"
 	"net/http"
 	"os"
