@@ -17,10 +17,12 @@ package cmd
 
 import (
 	"fmt"
+	"image"
 	_ "image/gif"
 	_ "image/jpeg"
 	_ "image/png"
 	"io"
+	"log"
 	"net/http"
 	"os"
 
@@ -69,16 +71,40 @@ func getGopherLink(gopherName string) error {
 	}
 	defer response.Body.Close()
 	if response.StatusCode == 200 || response.StatusCode == 403 {
-
 		link := "https://raw.githubusercontent.com/scraly/gophers/main/" + gopherName + ".png"
-		result := "![" + gopherName + "](" + link + ")"
-
+		result := "<img src=" + "\"" + link + "\"" + " alt=" + "\"" + gopherName + "\"" + ">"
 		fmt.Println(result)
 		fmt.Println(gopherName + "! I choose you! Paste above link in the readme!")
 	} else {
 		fmt.Println("Error: " + gopherName + " not exists! :-(")
 	}
 	return nil
+}
+
+func getLW(url string) {
+	resp, err := http.Get(url)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+
+	m, _, err := image.Decode(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	g := m.Bounds()
+
+	// Get height and width
+	height := g.Dy()
+	width := g.Dx()
+
+	// The resolution is height x width
+	resolution := height * width
+
+	fmt.Println("Height", height)
+	fmt.Println("Width", width)
+	// Print results
+	fmt.Println(resolution, "pixels")
 }
 
 func getGopherImage(path string, gopherName string) error {

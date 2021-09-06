@@ -1,4 +1,4 @@
-![mac-gopher](https://raw.githubusercontent.com/scraly/gophers/main/mac-gopher.png)
+<img src="https://raw.githubusercontent.com/scraly/gophers/main/mac-gopher.png" alt="mac-gopher">
 
 # goris
 This `goris` command-line tool is mainly used to download a gopher png files from a amazing Go developer Aurélie's repo.
@@ -47,7 +47,7 @@ Perfect! Just saved in /Users/boris/desktop/5th-element.png!
 
 > goris get link 5th-element
 Try to Generate gopher link...
-![5th-element](https://raw.githubusercontent.com/scraly/gophers/main/5th-element.png)
+<img src="https://raw.githubusercontent.com/scraly/gophers/main/5th-element.png" alt="5th-element">
 5th-element! I choose you! Paste above link in the readme!
 ```
 
