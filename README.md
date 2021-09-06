@@ -1,3 +1,5 @@
+![mac-gopher](https://raw.githubusercontent.com/scraly/gophers/main/mac-gopher.png)
+
 # goris
 This `goris` command-line tool is mainly used to download a gopher png files from a amazing Go developer Aurélie's repo.
 see below link:
@@ -23,7 +25,7 @@ https://github.com/scraly/gophers
 ```bash
 > goris list # show a gopher image file name list
 
-> goris get # download gopher image and save to desktop
+> goris get # download gopher image and save to desktop, or get a gopher link
 ```
 
 ### Demo
@@ -42,6 +44,11 @@ big-bang-theory
 > goris get 5th-element
 Try to get '5th-element' Gopher...
 Perfect! Just saved in /Users/boris/desktop/5th-element.png!
+
+> goris get link 5th-element
+Try to Generate gopher link...
+![5th-element](https://raw.githubusercontent.com/scraly/gophers/main/5th-element.png)
+5th-element! I choose you! Paste above link in the readme!
 ```
 
 ## Tech stack
@@ -52,8 +59,6 @@ Perfect! Just saved in /Users/boris/desktop/5th-element.png!
 
 ### Todo:
 - `view` command: Be able to preview gopher image.
-
-- `get link` command: Be able to get the link that allow to past in README.md file.
 
 ### Reference:
 https://dev.to/aurelievache/learning-go-by-examples-part-3-create-a-cli-app-in-go-1h43

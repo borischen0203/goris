@@ -35,52 +35,93 @@ var getCmd = &cobra.Command{
 	Long:  `This get command will call GitHub repository in order to return the desired Gopher.`,
 	Args:  cobra.RangeArgs(1, 2),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		var gopherName = "dr-who.png"
+		gopherName := "dr-who.png"
+		l := len(args)
 
-		path, _ := homedir.Dir()
-		path += "/desktop/"
-
-		if len(args) == 1 {
+		switch l {
+		case 1:
 			gopherName = args[0]
-		}
-		if len(args) == 2 {
-			gopherName = args[0]
-			path = args[1] + "/"
-			fmt.Println(path)
-		}
-
-		URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
-
-		fmt.Println("Try to get '" + gopherName + "' Gopher...")
-
-		// Get the data
-		response, err := http.Get(URL)
-		if err != nil {
-			fmt.Println(err)
-		}
-		defer response.Body.Close()
-
-		if response.StatusCode == 200 {
-			// Create the file
-			out, err := os.Create(path + gopherName + ".png")
+			path, _ := getDefaultPath()
+			err := getGopherImage(path, gopherName)
 			if err != nil {
-				fmt.Println(err)
-			}
-			defer out.Close()
-
-			// Writer the body to file
-			_, err = io.Copy(out, response.Body)
-			if err != nil {
-				fmt.Println(err)
 				return err
 			}
-			fmt.Println("Perfect! Just saved in " + out.Name() + "!")
-		} else {
-			fmt.Println("Error: " + gopherName + " not exists! :-(")
-			return err
+			return nil
+		case 2:
+			if args[0] == "link" {
+				gopherName = args[1]
+				err := getGopherLink(gopherName)
+				if err != nil {
+					return err
+				}
+			}
 		}
 		return nil
 	},
+}
+
+func getGopherLink(gopherName string) error {
+	fmt.Println("Try to Generate gopher link...")
+	URL := "https://api.github.com/repos/scraly/gophers/contents/" + gopherName + ".png"
+	response, err := http.Get(URL)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+	if response.StatusCode == 200 || response.StatusCode == 403 {
+
+		link := "https://raw.githubusercontent.com/scraly/gophers/main/" + gopherName + ".png"
+		result := "![" + gopherName + "](" + link + ")"
+
+		fmt.Println(result)
+		fmt.Println(gopherName + "! I choose you! Paste above link in the readme!")
+	} else {
+		fmt.Println("Error: " + gopherName + " not exists! :-(")
+	}
+	return nil
+}
+
+func getGopherImage(path string, gopherName string) error {
+	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
+	fmt.Println("Try to get '" + gopherName + "' Gopher...")
+
+	// Get the data
+	response, err := http.Get(URL)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer response.Body.Close()
+
+	if response.StatusCode == 200 {
+		// Create the file
+		out, err := os.Create(path + gopherName + ".png")
+		if err != nil {
+			fmt.Println(err)
+			return err
+		}
+		defer out.Close()
+
+		// Writer the body to file
+		_, err = io.Copy(out, response.Body)
+		if err != nil {
+			fmt.Println(err)
+			return err
+		}
+		fmt.Println("Perfect! Just saved in " + out.Name() + "!")
+	} else {
+		fmt.Println("Error: " + gopherName + " not exists!")
+		return err
+	}
+	return nil
+}
+
+func getDefaultPath() (string, error) {
+	path, err := homedir.Dir()
+	if err != nil {
+		return "", err
+	}
+	path += "/desktop/"
+	return path, nil
 }
 
 func init() {
