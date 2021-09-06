@@ -1,5 +1,13 @@
 <img src="https://raw.githubusercontent.com/scraly/gophers/main/mac-gopher.png" alt="mac-gopher">
 
+<p align="Left">
+  <p align="Left">
+    <a href="https://github.com/borischen0203/goris/releases/latest"><img alt="GitHub release" src="https://img.shields.io/github/v/release/borischen0203/goris.svg?logo=github&style=flat-square"></a>
+    <a href="https://github.com/borischen0203/goris/actions/workflows/go.yml"><img alt="GitHub release" src="https://github.com/borischen0203/goris/actions/workflows/go.yml/badge.svg?logo=github&style=flat-square"></a>
+    <!-- <a href="https://goreportcard.com/report/github.com/borischen0203/goris"><img src="https://goreportcard.com/badge/github.com/borischen0203/goris" alt="Code Status" /></a> -->
+  </p>
+</p>
+
 # goris
 This `goris` command-line tool is mainly used to download a gopher png files from a amazing Go developer Aurélie's repo.
 see below link:
