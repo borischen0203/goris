@@ -21,14 +21,14 @@ https://github.com/scraly/gophers
 
 ### Run
 ```bash
-> goris list # show a gopher image file name list 
+> goris list # show a gopher image file name list
 
 > goris get # download gopher image and save to desktop
 ```
 
 ### Demo
 ```bash
-> goris list 
+> goris list
 [Try to get Gopher list...]
 5th-element
 arrow-gopher
@@ -40,9 +40,11 @@ big-bang-theory
 .
 
 > goris get 5th-element
+Try to get '5th-element' Gopher...
+Perfect! Just saved in /Users/boris/desktop/5th-element.png!
 ```
 
-## Tech stacks
+## Tech stack
 - Golang
 - Cobra
 
@@ -53,6 +55,8 @@ big-bang-theory
 
 - `get link` command: Be able to get the link that allow to past in README.md file.
 
+### Reference:
+https://dev.to/aurelievache/learning-go-by-examples-part-3-create-a-cli-app-in-go-1h43
 
 
 
