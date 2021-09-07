@@ -1,4 +1,4 @@
-//Package cmd provides command for using
+// Package cmd provides command for using
 package cmd
 
 /*
