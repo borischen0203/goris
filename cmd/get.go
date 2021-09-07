@@ -16,6 +16,7 @@ limitations under the License.
 package cmd
 
 import (
+	"embed"
 	"fmt"
 	"image"
 	_ "image/gif"
@@ -29,6 +30,9 @@ import (
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 )
+
+//go:embed gophers
+var embedGopherFiles embed.FS
 
 // getCmd represents the get command
 var getCmd = &cobra.Command{
@@ -133,7 +137,9 @@ func getGopherImage(path string, gopherName string) error {
 			fmt.Println(err)
 			return err
 		}
+
 		fmt.Println("Perfect! Just saved in " + out.Name() + "!")
+		gopherSay(gopherName)
 	} else {
 		fmt.Println("Error: " + gopherName + " not exists!")
 		return err
@@ -148,6 +154,27 @@ func getDefaultPath() (string, error) {
 	}
 	path += "/desktop/"
 	return path, nil
+}
+
+func gopherSay(gopherName string) {
+	nbChar := len(gopherName) + len("download!")
+
+	line := " "
+	for i := 0; i <= nbChar; i++ {
+		line += "-"
+	}
+
+	fmt.Println(line)
+	fmt.Println("< " + gopherName + " download!" + " >")
+	fmt.Println(line)
+	fmt.Println("        \\")
+	fmt.Println("         \\")
+
+	fileData, err := embedGopherFiles.ReadFile("gophers/gopher.txt")
+	if err != nil {
+		log.Fatal("Error during read gopher ascii file", err)
+	}
+	fmt.Println(string(fileData))
 }
 
 func init() {

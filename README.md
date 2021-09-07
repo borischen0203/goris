@@ -17,6 +17,7 @@ https://github.com/scraly/gophers
 
 ## Features
 - `get` command: Download a gopher image.
+- `get link` command: get a gopher image link with html.
 - `list` command: List all gopher image names.
 
 ## Installation
@@ -34,9 +35,10 @@ https://github.com/scraly/gophers
 > goris list # show a gopher image file name list
 
 > goris get # download gopher image and save to desktop, or get a gopher link
+> goris get link # get gopher image link
 ```
 
-### Demo
+### Demo example
 ```bash
 > goris list
 [Try to get Gopher list...]
@@ -52,6 +54,22 @@ big-bang-theory
 > goris get 5th-element
 Try to get '5th-element' Gopher...
 Perfect! Just saved in /Users/boris/desktop/5th-element.png!
+ ---------------------
+< 5th-element download! >
+ ---------------------
+        \
+         \
+         ,_---~~~~~----._
+  _,,_,*^____      _____``*g*\"*,
+ / __/ /'     ^.  /      \ ^@q   f
+[  @f | @))    |  | @))   l  0 _/
+ \`/   \~____ / __ \_____/    \
+  |           _l__l_           I
+  }          [______]           I
+  ]            | | |            |
+  ]             ~ ~             |
+  |                            |
+   |                           |
 
 > goris get link 5th-element
 Try to Generate gopher link...

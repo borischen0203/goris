@@ -15,7 +15,9 @@ limitations under the License.
 */
 package main
 
-import "github.com/borischen0203/goris/cmd"
+import (
+	"github.com/borischen0203/goris/cmd"
+)
 
 func main() {
 	cmd.Execute()
