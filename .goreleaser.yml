@@ -14,13 +14,13 @@ builds:
         - darwin
 
 brews:
-  - name: goris
-    homepage: https://github.com/borischen0203/homebrew-goris
+  - tap:
+      owner: borischen0203
+      name: homebrew-goris
+    folder: Formula
+    homepage: https://github.com/borischen0203/goris
     description: A tool to get gopher image!
     license: MIT
-    tap:
-        owner: borischen0203
-        name: homebrew-goris
 
 archives:
     - format: tar.gz
@@ -36,9 +36,6 @@ archives:
             darwin: macOS
             linux: Linux
             windows: Windows
-      files:
-        - Readme.MD
-         - LICENSE
 checksum:
     name_template: 'checksums.txt'
 snapshot:
