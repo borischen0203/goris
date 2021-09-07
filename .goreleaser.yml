@@ -23,14 +23,22 @@ brews:
         name: homebrew-goris
 
 archives:
-    - replacements:
-        amd64: 64bit
-        386: 32bit
-        arm: ARM
-        arm64: ARM64
-        darwin: macOS
-        linux: Linux
-        windows: Windows
+    - format: tar.gz
+      format_overrides:
+          - goos: windows
+            format: zip
+      name_template: '{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}'
+      replacements:
+            amd64: 64bit
+            386: 32bit
+            arm: ARM
+            arm64: ARM64
+            darwin: macOS
+            linux: Linux
+            windows: Windows
+      files:
+        - Readme.MD
+         - LICENSE
 checksum:
     name_template: 'checksums.txt'
 snapshot:
