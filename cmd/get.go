@@ -60,7 +60,7 @@ var getCmd = &cobra.Command{
 					return err
 				}
 			} else {
-				fmt.Println("Error: no this command! :-(")
+				fmt.Println("Error: no this! :-(")
 			}
 		}
 		return nil
@@ -70,11 +70,14 @@ var getCmd = &cobra.Command{
 func getGopherLink(gopherName string) error {
 	fmt.Println("Try to Generate gopher link...")
 	URL := "https://api.github.com/repos/scraly/gophers/contents/" + gopherName + ".png"
+
 	response, err := http.Get(URL)
 	if err != nil {
-		panic(err)
+		return err
 	}
+
 	defer response.Body.Close()
+
 	if response.StatusCode == 200 || response.StatusCode == 403 {
 		link := "https://raw.githubusercontent.com/scraly/gophers/main/" + gopherName + ".png"
 		result := "<img src=" + "\"" + link + "\"" + " alt=" + "\"" + gopherName + "\"" + ">"
@@ -113,13 +116,13 @@ func getLW(url string) {
 }
 
 func getGopherImage(path string, gopherName string) error {
-	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
 	fmt.Println("Try to get '" + gopherName + "' Gopher...")
+	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
 
 	// Get the data
 	response, err := http.Get(URL)
 	if err != nil {
-		fmt.Println(err)
+		return err
 	}
 	defer response.Body.Close()
 
