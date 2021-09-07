@@ -21,7 +21,6 @@ import (
 	"embed"
 	"fmt"
 	"image"
-	_ "image/png"
 	"io"
 	"log"
 	"net/http"
