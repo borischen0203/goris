@@ -59,6 +59,8 @@ var getCmd = &cobra.Command{
 				if err != nil {
 					return err
 				}
+			} else {
+				fmt.Println("Error: no this command! :-(")
 			}
 		}
 		return nil
