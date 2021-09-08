@@ -9,7 +9,7 @@
 </p>
 
 # goris
-This `goris` command-line tool is mainly used to download a gopher png files from a amazing Go developer Aurélie's repo.
+This `goris` command-line tool is mainly used to download gopher png images from an amazing Go developer Aurélie's repo.
 see below link:
 
 https://github.com/scraly/gophers
@@ -33,7 +33,6 @@ https://github.com/scraly/gophers
 ### Run
 ```bash
 > goris list # show a gopher image file name list
-
 > goris get # download gopher image and save to desktop, or get a gopher link
 > goris get link # get gopher image link
 ```
