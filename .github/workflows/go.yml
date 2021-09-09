@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
+    - name: Install libwebkit2gtk-4.0-dev
+      run: sudo apt-get install libwebkit2gtk-4.0-dev
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
