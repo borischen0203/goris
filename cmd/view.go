@@ -31,7 +31,8 @@ var viewCmd = &cobra.Command{
 		var gopherName string
 		if len(args) >= 1 && args[0] != "" {
 			gopherName = args[0]
-			previewGopher(gopherName)
+			fmt.Println(gopherName)
+			// previewGopher(gopherName)
 		} else {
 			fmt.Println("Error: empty input! :-(")
 		}
