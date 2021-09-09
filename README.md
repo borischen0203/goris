@@ -16,9 +16,10 @@ https://github.com/scraly/gophers
 
 
 ## Features
-- `get` command: Download a gopher image.
-- `get link` command: get a gopher image link with html.
-- `list` command: List all gopher image names.
+- `get` command: Be able to download a gopher image to desktop.
+- `get link` command: Be able to get a gopher image link with html.
+- `list` command: Be able to display a list with all gopher image names.
+- `view` command: Be able to pop up gopher image window.
 
 ## Installation
 
@@ -35,9 +36,11 @@ https://github.com/scraly/gophers
 > goris list # show a gopher image file name list
 > goris get # download gopher image and save to desktop, or get a gopher link
 > goris get link # get gopher image link
+> goris view # pop up a gopher image window
 ```
 
 ### Demo example
+`list` command
 ```bash
 > goris list
 [Try to get Gopher list...]
@@ -49,7 +52,9 @@ big-bang-theory
 .
 .
 .
-
+```
+`get` command
+```
 > goris get 5th-element
 Try to get '5th-element' Gopher...
 Perfect! Just saved in /Users/boris/desktop/5th-element.png!
@@ -69,11 +74,20 @@ Perfect! Just saved in /Users/boris/desktop/5th-element.png!
   ]             ~ ~             |
   |                            |
    |                           |
+```
 
+`get link` command
+```
 > goris get link 5th-element
 Try to Generate gopher link...
 <img src="https://raw.githubusercontent.com/scraly/gophers/main/5th-element.png" alt="5th-element">
 5th-element! I choose you! Paste above link in the readme!
+```
+
+`view` command
+```
+> goris view 5th-element
+# pop up a gopher image window
 ```
 
 ## Tech stack
@@ -83,7 +97,7 @@ Try to Generate gopher link...
 
 
 ### Todo:
-- [ ] `view` command: Be able to preview gopher image.
+- [X] `view` command: Be able to preview gopher image.
 - [X] `get link` command: Be able to generate gopher image link with html.
 
 ### Reference:
