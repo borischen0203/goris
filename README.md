@@ -84,7 +84,7 @@ Try to Generate gopher link...
 
 ### Todo:
 - [ ] `view` command: Be able to preview gopher image.
-- [ ] `get link` command: Be able to generate gopher image link with html.
+- [X] `get link` command: Be able to generate gopher image link with html.
 
 ### Reference:
 https://dev.to/aurelievache/learning-go-by-examples-part-3-create-a-cli-app-in-go-1h43
