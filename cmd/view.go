@@ -19,7 +19,7 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
-	"github.com/webview/webview"
+	// "github.com/webview/webview"
 )
 
 // viewCmd represents the view command
@@ -39,16 +39,16 @@ var viewCmd = &cobra.Command{
 	},
 }
 
-func previewGopher(gopherName string) {
-	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
-	debug := true
-	w := webview.New(debug)
-	defer w.Destroy()
-	w.SetTitle(gopherName)
-	w.SetSize(800, 600, webview.HintNone)
-	w.Navigate(URL)
-	w.Run()
-}
+// func previewGopher(gopherName string) {
+// 	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
+// 	debug := true
+// 	w := webview.New(debug)
+// 	defer w.Destroy()
+// 	w.SetTitle(gopherName)
+// 	w.SetSize(800, 600, webview.HintNone)
+// 	w.Navigate(URL)
+// 	w.Run()
+// }
 
 func init() {
 	rootCmd.AddCommand(viewCmd)
