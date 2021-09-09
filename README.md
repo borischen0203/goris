@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/scraly/gophers/main/mac-gopher.png" alt="mac-gopher">
+<img src="https://raw.githubusercontent.com/scraly/gophers/main/mac-gopher.png" alt="mac-gopher" width=500 height=474 >
 
 <p align="Left">
   <p align="Left">
