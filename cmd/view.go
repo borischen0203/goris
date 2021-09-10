@@ -26,7 +26,7 @@ import (
 	// "fyne.io/fyne/v2/widget"
 	// "github.com/spf13/cobra"
 	"github.com/spf13/cobra"
-	"github.com/webview/webview"
+	// "github.com/webview/webview"
 )
 
 // viewCmd represents the view command
@@ -39,7 +39,7 @@ var viewCmd = &cobra.Command{
 		if len(args) >= 1 && args[0] != "" {
 			gopherName = args[0]
 			fmt.Println(gopherName)
-			previewGopher(gopherName)
+			// previewGopher(gopherName)
 			// viewGopher(gopherName)
 		} else {
 			fmt.Println("Error: empty input! :-(")
@@ -102,16 +102,16 @@ var viewCmd = &cobra.Command{
 
 // }
 
-func previewGopher(gopherName string) {
-	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
-	debug := true
-	w := webview.New(debug)
-	defer w.Destroy()
-	w.SetTitle(gopherName)
-	w.SetSize(800, 600, webview.HintNone)
-	w.Navigate(URL)
-	w.Run()
-}
+// func previewGopher(gopherName string) {
+// 	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
+// 	debug := true
+// 	w := webview.New(debug)
+// 	defer w.Destroy()
+// 	w.SetTitle(gopherName)
+// 	w.SetSize(800, 600, webview.HintNone)
+// 	w.Navigate(URL)
+// 	w.Run()
+// }
 
 func init() {
 	rootCmd.AddCommand(viewCmd)
