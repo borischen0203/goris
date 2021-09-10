@@ -19,7 +19,7 @@ https://github.com/scraly/gophers
 - `get` command: Be able to download a gopher image to desktop.
 - `get link` command: Be able to get a gopher image link with html.
 - `list` command: Be able to display a list with all gopher image names.
-- `view` command: Be able to pop up gopher image window.
+<!-- - `view` command: Be able to pop up gopher image window. -->
 
 ## Installation
 
@@ -36,7 +36,7 @@ https://github.com/scraly/gophers
 > goris list # show a gopher image file name list
 > goris get # download gopher image and save to desktop, or get a gopher link
 > goris get link # get gopher image link
-> goris view # pop up a gopher image window
+# > goris view # pop up a gopher image window
 ```
 
 ### Demo example
@@ -84,11 +84,11 @@ Try to Generate gopher link...
 5th-element! I choose you! Paste above link in the readme!
 ```
 
-`view` command
+<!-- `view` command
 ```
 > goris view 5th-element
 # pop up a gopher image window
-```
+``` -->
 
 ## Tech stack
 - Golang
@@ -97,7 +97,7 @@ Try to Generate gopher link...
 
 
 ### Todo:
-- [X] `view` command: Be able to preview gopher image.
+- [ ] `view` command: Be able to preview gopher image.
 - [X] `get link` command: Be able to generate gopher image link with html.
 
 ### Reference:
