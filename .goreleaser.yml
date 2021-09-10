@@ -1,16 +1,16 @@
 env:
     - GO111MODULE=on
-    - CGO_ENABLED=0
+    - CGO_ENABLED=1
 before:
     hooks:
         - go mod tidy
         - go mod download
 builds:
     - env:
-          - CGO_ENABLED=0
+          - CGO_ENABLED=1
       goos:
-        # - linux
-        - windows
+        - linux
+        # - windows
         - darwin
 
 brews:
@@ -34,8 +34,8 @@ archives:
             arm: ARM
             arm64: ARM64
             darwin: macOS
-            # linux: Linux
-            windows: Windows
+            linux: Linux
+            # windows: Windows
 checksum:
     name_template: 'checksums.txt'
 snapshot:
