@@ -48,9 +48,7 @@ archives:
           netbsd: NetBSD
           freebsd: FreeBSD
           dragonfly: DragonFlyBSD
-      files:
-          - Readme.MD
-          - LICENSE
+
 checksum:
     name_template: 'checksums.txt'
 snapshot:
