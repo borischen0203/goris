@@ -29,8 +29,8 @@ jobs:
           fetch-depth: 0
       - name: Install libwebkit2gtk-4.0-dev
         run: sudo apt-get install libwebkit2gtk-4.0-dev
-      - name: GCC multilib
-        run: sudo apt-get install gcc-multilib g++-multilib
+      # - name: GCC multilib
+      #   run: sudo apt-get install gcc-multilib g++-multilib
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
