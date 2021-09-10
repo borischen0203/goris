@@ -6,21 +6,21 @@ before:
         - go mod tidy
         - go mod download
 builds:
-    - id: goris-darwin-amd64
-      binary: goris
-      env:
+    # - id: goris-darwin-amd64
+    - env:
           - CGO_ENABLED=0
           - GO111MODULE=on
         #   - CC=o64-clang
         #   - CXX=o64-clang++
       main: ./main.go
-      goos:
-          - darwin
-      goarch:
-          - amd64
-      ignore:
-          - goos: darwin
-            goarch: 386
+    #   goos:
+    #       - darwin
+    #   goarch:
+    #       - amd64
+    #   ignore:
+    #       - goos: darwin
+    #         goarch: 386
+      binary: goris
 brews:
   - tap:
       owner: borischen0203
