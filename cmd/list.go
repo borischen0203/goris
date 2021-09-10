@@ -48,43 +48,71 @@ var listCmd = &cobra.Command{
 	Short: "List gopher png list",
 	Long:  `List gopher png list`,
 	Run: func(cmd *cobra.Command, args []string) {
-		URL := "https://api.github.com/repos/scraly/gophers/git/trees/main?recursive=1"
+		// URL := "https://api.github.com/repos/scraly/gophers/git/trees/main?recursive=1"
 
 		fmt.Println("[Try to get Gopher list...]")
+		getList()
+		// // Get the data
+		// response, err := http.Get(URL)
+		// if err != nil {
+		// 	fmt.Println(err)
+		// }
+		// defer response.Body.Close()
 
-		// Get the data
-		response, err := http.Get(URL)
-		if err != nil {
-			fmt.Println(err)
-		}
-		defer response.Body.Close()
-
-		if response.StatusCode == 200 {
-			jsonDataFromHttp, err := ioutil.ReadAll(response.Body)
-			if err != nil {
-				panic(err)
-			}
-			var gopher GopherJson
-			err = json.Unmarshal([]byte(jsonDataFromHttp), &gopher)
-			if err != nil {
-				panic(err)
-			}
-			for i := 0; i < len(gopher.Tree); i++ {
-				if strings.Contains(gopher.Tree[i].Path, ".png") {
-					result := strings.ReplaceAll(gopher.Tree[i].Path, ".png", "")
-					fmt.Println(result)
-				}
-			}
-		} else {
-			fmt.Println("Error: list not exists! :-(")
-		}
+		// if response.StatusCode == 200 {
+		// 	jsonDataFromHttp, err := ioutil.ReadAll(response.Body)
+		// 	if err != nil {
+		// 		panic(err)
+		// 	}
+		// 	var gopher GopherJson
+		// 	err = json.Unmarshal([]byte(jsonDataFromHttp), &gopher)
+		// 	if err != nil {
+		// 		panic(err)
+		// 	}
+		// 	for i := 0; i < len(gopher.Tree); i++ {
+		// 		if strings.Contains(gopher.Tree[i].Path, ".png") {
+		// 			result := strings.ReplaceAll(gopher.Tree[i].Path, ".png", "")
+		// 			fmt.Println(result)
+		// 		}
+		// 	}
+		// } else {
+		// 	fmt.Println("Error: list not exists! :-(")
+		// }
 
 	},
 }
 
-// func getList() {
+func getList() map[string]string {
+	var list = make(map[string]string)
+	URL := "https://api.github.com/repos/scraly/gophers/git/trees/main?recursive=1"
+	response, err := http.Get(URL)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer response.Body.Close()
 
-// }
+	if response.StatusCode == 200 {
+		jsonDataFromHttp, err := ioutil.ReadAll(response.Body)
+		if err != nil {
+			panic(err)
+		}
+		var gopher GopherJson
+		err = json.Unmarshal([]byte(jsonDataFromHttp), &gopher)
+		if err != nil {
+			panic(err)
+		}
+		for i := 0; i < len(gopher.Tree); i++ {
+			if strings.Contains(gopher.Tree[i].Path, ".png") {
+				gopherName := strings.ReplaceAll(gopher.Tree[i].Path, ".png", "")
+				list[gopherName] = "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
+				fmt.Println(gopherName)
+			}
+		}
+	} else {
+		fmt.Println("Error: list not exists! :-(")
+	}
+	return list
+}
 
 func init() {
 	rootCmd.AddCommand(listCmd)
