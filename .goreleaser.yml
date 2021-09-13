@@ -39,13 +39,13 @@ builds:
   goarch:
   - amd64
 
-archives:
-- replacements:
-    darwin: Mac
-    linux: Linux
-    #windows: Windows
-    386: 32-bit
-    amd64: 64-bit
+# archives:
+# - replacements:
+#     darwin: Mac
+#     linux: Linux
+#     #windows: Windows
+#     386: 32-bit
+#     amd64: 64-bit
 brews:
   - tap:
       owner: borischen0203
@@ -55,20 +55,18 @@ brews:
     description: A tool to get gopher image!
     license: MIT
 
-# archives:
-#     - format: tar.gz
-#       format_overrides:
-#           - goos: windows
-#             format: zip
-#       name_template: '{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}'
-#       replacements:
-#           amd64: 64bit
-#           386: 32bit
-#           arm: ARM
-#           arm64: ARM64
-#           darwin: macOS
-#           linux: Linux
-        #   windows: Windows
+archives:
+    - format: tar.gz
+      format_overrides:
+          - goos: windows
+            format: zip
+      name_template: '{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}'
+      replacements:
+          darwin: Mac
+          linux: Linux
+          #windows: Windows
+          386: 32-bit
+          amd64: 64-bit
 
 checksum:
     name_template: 'checksums.txt'
