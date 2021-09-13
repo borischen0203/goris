@@ -1,26 +1,47 @@
 env:
     - GO111MODULE=on
-    - CGO_ENABLED=0
+    - CGO_ENABLED=1
 before:
     hooks:
         - go mod tidy
         - go mod download
+# builds:
+#     # - id: goris-darwin-amd64
+#     - env:
+#           - CGO_ENABLED=0
+#           - GO111MODULE=on
+#         #   - CC=o64-clang
+#         #   - CXX=o64-clang++
+#       main: ./main.go
+#     #   goos:
+#     #       - darwin
+#     #   goarch:
+#     #       - amd64
+#     #   ignore:
+#     #       - goos: darwin
+#     #         goarch: 386
+#       binary: goris
 builds:
-    # - id: goris-darwin-amd64
-    - env:
-          - CGO_ENABLED=0
-          - GO111MODULE=on
-        #   - CC=o64-clang
-        #   - CXX=o64-clang++
-      main: ./main.go
-    #   goos:
-    #       - darwin
-    #   goarch:
-    #       - amd64
-    #   ignore:
-    #       - goos: darwin
-    #         goarch: 386
-      binary: goris
+- id: linux-build
+  env:
+  - CGO_ENABLED=1
+  goos:
+  - linux
+  ignore:
+  - goos: linux
+    goarch: 386
+- id: darwin-build
+  ldflags:
+  - -s
+  env:
+  - CGO_ENABLED=1
+  - CC=/home/runner/work/osxcross/target/bin/o64-clang
+  - CXX=/home/runner/work/osxcross/target/bin/o64-clang++
+  goos:
+  - darwin
+  ignore:
+  - goos: darwin
+    goarch: 386
 brews:
   - tap:
       owner: borischen0203
@@ -43,11 +64,7 @@ archives:
           arm64: ARM64
           darwin: macOS
           linux: Linux
-          windows: Windows
-          openbsd: OpenBSD
-          netbsd: NetBSD
-          freebsd: FreeBSD
-          dragonfly: DragonFlyBSD
+        #   windows: Windows
 
 checksum:
     name_template: 'checksums.txt'

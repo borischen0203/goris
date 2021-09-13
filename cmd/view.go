@@ -26,8 +26,8 @@ import (
 	// "fyne.io/fyne/v2/dialog"
 	// "fyne.io/fyne/v2/widget"
 	"github.com/spf13/cobra"
+	"github.com/webview/webview"
 	"github.com/zserge/lorca"
-	// "github.com/webview/webview"
 )
 
 // viewCmd represents the view command
@@ -116,16 +116,16 @@ func gopherPreview() {
 
 // }
 
-// func previewGopher(gopherName string) {
-// 	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
-// 	debug := true
-// 	w := webview.New(debug)
-// 	defer w.Destroy()
-// 	w.SetTitle(gopherName)
-// 	w.SetSize(800, 600, webview.HintNone)
-// 	w.Navigate(URL)
-// 	w.Run()
-// }
+func previewGopher(gopherName string) {
+	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
+	debug := true
+	w := webview.New(debug)
+	defer w.Destroy()
+	w.SetTitle(gopherName)
+	w.SetSize(800, 600, webview.HintNone)
+	w.Navigate(URL)
+	w.Run()
+}
 
 func init() {
 	rootCmd.AddCommand(viewCmd)
