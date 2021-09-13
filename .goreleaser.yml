@@ -1,6 +1,6 @@
-env:
-    - GO111MODULE=on
-    - CGO_ENABLED=1
+# env:
+#     - GO111MODULE=on
+#     - CGO_ENABLED=1
 before:
     hooks:
         - go mod tidy
@@ -27,21 +27,25 @@ builds:
   - CGO_ENABLED=1
   goos:
   - linux
-  ignore:
-  - goos: linux
-    goarch: 386
+  goarch:
+  - amd64
 - id: darwin-build
-  ldflags:
-  - -s
   env:
   - CGO_ENABLED=1
   - CC=/home/runner/work/osxcross/target/bin/o64-clang
   - CXX=/home/runner/work/osxcross/target/bin/o64-clang++
   goos:
   - darwin
-  ignore:
-  - goos: darwin
-    goarch: 386
+  goarch:
+  - amd64
+
+archives:
+- replacements:
+    darwin: Mac
+    linux: Linux
+    #windows: Windows
+    386: 32-bit
+    amd64: 64-bit
 brews:
   - tap:
       owner: borischen0203
@@ -51,19 +55,19 @@ brews:
     description: A tool to get gopher image!
     license: MIT
 
-archives:
-    - format: tar.gz
-      format_overrides:
-          - goos: windows
-            format: zip
-      name_template: '{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}'
-      replacements:
-          amd64: 64bit
-          386: 32bit
-          arm: ARM
-          arm64: ARM64
-          darwin: macOS
-          linux: Linux
+# archives:
+#     - format: tar.gz
+#       format_overrides:
+#           - goos: windows
+#             format: zip
+#       name_template: '{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}'
+#       replacements:
+#           amd64: 64bit
+#           386: 32bit
+#           arm: ARM
+#           arm64: ARM64
+#           darwin: macOS
+#           linux: Linux
         #   windows: Windows
 
 checksum:
