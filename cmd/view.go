@@ -17,6 +17,7 @@ package cmd
 
 import (
 	"fmt"
+	"net/url"
 
 	// "fyne.io/fyne/v2"
 	// "fyne.io/fyne/v2/app"
@@ -25,7 +26,8 @@ import (
 	// "fyne.io/fyne/v2/dialog"
 	// "fyne.io/fyne/v2/widget"
 	"github.com/spf13/cobra"
-	"github.com/webview/webview"
+	"github.com/zserge/lorca"
+	// "github.com/webview/webview"
 )
 
 // viewCmd represents the view command
@@ -38,12 +40,25 @@ var viewCmd = &cobra.Command{
 		if len(args) >= 1 && args[0] != "" {
 			gopherName = args[0]
 			fmt.Println(gopherName)
-			previewGopher(gopherName)
+			// previewGopher(gopherName)
 			// viewGopher(gopherName)
+			gopherPreview()
 		} else {
 			fmt.Println("Error: empty input! :-(")
 		}
 	},
+}
+
+func gopherPreview() {
+	// Create UI with data URI
+	ui, _ := lorca.New("data:text/html,"+url.PathEscape(`
+	<html>
+	 <head><title>Gopher</title></head>
+	 <body><img src="https://raw.githubusercontent.com/scraly/gophers/main/friends.png" alt="friends"></body>
+	</html>
+	`), "", 800, 600)
+	defer ui.Close()
+	<-ui.Done()
 }
 
 // func viewGopher(gopherName string) {
@@ -101,16 +116,16 @@ var viewCmd = &cobra.Command{
 
 // }
 
-func previewGopher(gopherName string) {
-	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
-	debug := true
-	w := webview.New(debug)
-	defer w.Destroy()
-	w.SetTitle(gopherName)
-	w.SetSize(800, 600, webview.HintNone)
-	w.Navigate(URL)
-	w.Run()
-}
+// func previewGopher(gopherName string) {
+// 	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
+// 	debug := true
+// 	w := webview.New(debug)
+// 	defer w.Destroy()
+// 	w.SetTitle(gopherName)
+// 	w.SetSize(800, 600, webview.HintNone)
+// 	w.Navigate(URL)
+// 	w.Run()
+// }
 
 func init() {
 	rootCmd.AddCommand(viewCmd)

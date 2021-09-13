@@ -1,6 +1,6 @@
 env:
     - GO111MODULE=on
-    - CGO_ENABLED=1
+    - CGO_ENABLED=0
 before:
     hooks:
         - go mod tidy
@@ -8,7 +8,7 @@ before:
 builds:
     # - id: goris-darwin-amd64
     - env:
-          - CGO_ENABLED=1
+          - CGO_ENABLED=0
           - GO111MODULE=on
         #   - CC=o64-clang
         #   - CXX=o64-clang++
