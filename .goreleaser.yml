@@ -5,39 +5,39 @@ before:
     hooks:
         - go mod tidy
         - go mod download
-# builds:
-#     # - id: goris-darwin-amd64
-#     - env:
-#           - CGO_ENABLED=0
-#           - GO111MODULE=on
-#         #   - CC=o64-clang
-#         #   - CXX=o64-clang++
-#       main: ./main.go
-#     #   goos:
-#     #       - darwin
-#     #   goarch:
-#     #       - amd64
-#     #   ignore:
-#     #       - goos: darwin
-#     #         goarch: 386
-#       binary: goris
 builds:
-- id: linux-build
-  env:
-  - CGO_ENABLED=1
-  goos:
-  - linux
-  goarch:
-  - amd64
-- id: darwin-build
-  env:
-  - CGO_ENABLED=1
-  - CC=/home/runner/work/osxcross/target/bin/o64-clang
-  - CXX=/home/runner/work/osxcross/target/bin/o64-clang++
-  goos:
-  - darwin
-  goarch:
-  - amd64
+    # - id: goris-darwin-amd64
+    - env:
+          - CGO_ENABLED=1
+          - GO111MODULE=on
+          - CC=/home/runner/work/osxcross/target/bin/o64-clang
+          - CXX=/home/runner/work/osxcross/target/bin/o64-clang++
+      main: ./main.go
+    #   goos:
+    #       - darwin
+    #   goarch:
+    #       - amd64
+    #   ignore:
+    #       - goos: darwin
+    #         goarch: 386
+      binary: goris
+# builds:
+# - id: linux-build
+#   env:
+#   - CGO_ENABLED=1
+#   goos:
+#   - linux
+#   goarch:
+#   - amd64
+# - id: darwin-build
+#   env:
+#   - CGO_ENABLED=1
+#   - CC=/home/runner/work/osxcross/target/bin/o64-clang
+#   - CXX=/home/runner/work/osxcross/target/bin/o64-clang++
+#   goos:
+#   - darwin
+#   goarch:
+#   - amd64
 
 # archives:
 # - replacements:
@@ -62,8 +62,10 @@ archives:
             format: zip
       name_template: '{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}'
       replacements:
-          darwin: Mac
+          darwin: macOS
           linux: Linux
+          arm: ARM
+          arm64: ARM64
           #windows: Windows
           386: 32-bit
           amd64: 64-bit
