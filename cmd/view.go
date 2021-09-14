@@ -26,6 +26,7 @@ import (
 	"github.com/zserge/lorca"
 )
 
+//test commit
 // viewCmd represents the view command
 var viewCmd = &cobra.Command{
 	Use:   "view",
