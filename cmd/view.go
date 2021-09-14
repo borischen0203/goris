@@ -27,6 +27,7 @@ import (
 )
 
 //test commit
+//test commit2
 // viewCmd represents the view command
 var viewCmd = &cobra.Command{
 	Use:   "view",
