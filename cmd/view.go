@@ -17,15 +17,11 @@ package cmd
 
 import (
 	"fmt"
+	"net/http"
 	"net/url"
 
-	// "fyne.io/fyne/v2"
-	// "fyne.io/fyne/v2/app"
-	// "fyne.io/fyne/v2/canvas"
-	// "fyne.io/fyne/v2/container"
-	// "fyne.io/fyne/v2/dialog"
-	// "fyne.io/fyne/v2/widget"
 	"github.com/spf13/cobra"
+
 	// "github.com/webview/webview"
 	"github.com/zserge/lorca"
 )
@@ -39,83 +35,64 @@ var viewCmd = &cobra.Command{
 		var gopherName string
 		if len(args) >= 1 && args[0] != "" {
 			gopherName = args[0]
-			fmt.Println(gopherName)
-			// previewGopher(gopherName)
-			// viewGopher(gopherName)
-			gopherPreview()
-		} else {
-			fmt.Println("Error: empty input! :-(")
+			found, _ := gopherExist(gopherName)
+			if found {
+				fmt.Println("Pop-up " + gopherName + " window!")
+				// previewGopher(gopherName)
+				gopherPreview(gopherName)
+			} else {
+				fmt.Println("Error: " + gopherName + " not exists!")
+			}
+
 		}
 	},
 }
 
-func gopherPreview() {
+// check gopher image exist or not
+func gopherExist(gopherName string) (bool, error) {
+	URL := "https://raw.githubusercontent.com/scraly/gophers/main/" + gopherName + ".png"
+	response, err := http.Get(URL)
+	if err != nil {
+		return false, err
+	}
+	defer response.Body.Close()
+	if response.StatusCode == 200 {
+		return true, nil
+	}
+	return false, nil
+}
+
+// Pop-up a window for preview gopher image
+func gopherPreview(gopherName string) {
 	// Create UI with data URI
 	ui, _ := lorca.New("data:text/html,"+url.PathEscape(`
 	<html>
-	 <head><title>Gopher</title></head>
-	 <body><img src="https://raw.githubusercontent.com/scraly/gophers/main/friends.png" alt="friends"></body>
+	 <head><title>`+gopherName+`</title></head>
+	 <style>
+	 .gopher {
+		width:100%;
+		height:100%;
+		text-align: center;
+	}
+	img {
+		max-width: auto;
+        max-height:100%;
+        width: auto;
+        object-fit:container;
+	}
+	</style>
+	 <body>
+	 <div class ="gopher">
+	 <img src="https://raw.githubusercontent.com/scraly/gophers/main/`+gopherName+`.png" alt="friends"/>
+	 </div>
+	 </body>
 	</html>
 	`), "", 800, 600)
 	defer ui.Close()
 	<-ui.Done()
 }
 
-// func viewGopher(gopherName string) {
-// 	myApp := app.New()
-
-// 	myWindow := myApp.NewWindow("Gopher")
-
-// 	// Main menu
-// 	fileMenu := fyne.NewMenu("File",
-// 		fyne.NewMenuItem("Quit", func() { myApp.Quit() }),
-// 	)
-
-// 	helpMenu := fyne.NewMenu("Help",
-// 		fyne.NewMenuItem("About", func() {
-// 			dialog.ShowCustom("About", "Close", container.NewVBox(
-// 				widget.NewLabel("Welcome to Gopher, a simple Desktop app created in Go with Fyne."),
-// 				widget.NewLabel("Version: v0.1"),
-// 				widget.NewLabel("Author: Aurélie Vache"),
-// 			), myWindow)
-// 		}))
-// 	mainMenu := fyne.NewMainMenu(
-// 		fileMenu,
-// 		helpMenu,
-// 	)
-// 	myWindow.SetMainMenu(mainMenu)
-
-// 	// Define a welcome text centered
-// 	text := canvas.NewText(gopherName, color.White) //gopherName
-// 	text.Alignment = fyne.TextAlignCenter
-// 	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
-// 	// Define a Gopher image
-// 	var resource, _ = fyne.LoadResourceFromURLString(URL)
-// 	gopherImg := canvas.NewImageFromResource(resource)
-// 	gopherImg.SetMinSize(fyne.Size{Width: 500, Height: 500}) // by default size is 0, 0
-
-// 	// Display a vertical box containing text, image and button
-// 	box := container.NewVBox(
-// 		text,
-// 		gopherImg,
-// 	)
-
-// 	// Display our content
-// 	myWindow.SetContent(box)
-
-// 	// Close the App when Escape key is pressed
-// 	myWindow.Canvas().SetOnTypedKey(func(keyEvent *fyne.KeyEvent) {
-
-// 		if keyEvent.Name == fyne.KeyEscape {
-// 			myApp.Quit()
-// 		}
-// 	})
-
-// 	// Show window and run app
-// 	myWindow.ShowAndRun()
-
-// }
-
+//webview lib version: has issue with deploy
 // func previewGopher(gopherName string) {
 // 	URL := "https://github.com/scraly/gophers/raw/main/" + gopherName + ".png"
 // 	debug := true
