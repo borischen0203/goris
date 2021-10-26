@@ -15,36 +15,33 @@ see below link:
 https://github.com/scraly/gophers
 
 
-## Features
+# Features
 - `get` command: Be able to download a gopher image to desktop.
 - `get link` command: Be able to get a gopher image link with html.
 - `list` command: Be able to display a list with all gopher image names.
 - `view` command: Be able to pop up gopher image window.
 
-## Installation
+# How to use
 
-### On macOS via Homebrew
+## On macOS via Homebrew
+Required
+- Install homebrew
+- Install chrome browser
+
+Step1:
 ```bash
-> brew tap borischen0203/goris
-> brew install goris
+$ brew tap borischen0203/goris
+```
+Step2:
+```bash
+$ brew install goris
 ```
 
-## How to use
-
-### Make sure you install a chrome browser
-
-### Run
+### Run demo
+#### `list` command
 ```bash
-> goris list # show a gopher image file name list
-> goris get # download gopher image and save to desktop
-> goris get link # get gopher image link
-> goris view # pop up a gopher image window
-```
-
-### Demo example
-`list` command
-```bash
-> goris list
+# show a gopher image file name list
+$ goris list
 [Try to get Gopher list...]
 5th-element
 arrow-gopher
@@ -55,9 +52,10 @@ big-bang-theory
 .
 .
 ```
-`get` command
+#### `get` command
 ```bash
-> goris get 5th-element
+# download gopher image and save to desktop
+$ goris get 5th-element
 Try to get '5th-element' Gopher...
 Perfect! Just saved in /Users/boris/desktop/5th-element.png!
  ---------------------
@@ -78,23 +76,65 @@ Perfect! Just saved in /Users/boris/desktop/5th-element.png!
    |                           |
 ```
 
-`get link` command
+##### `get link` command
 ```bash
-> goris get link 5th-element
+# get gopher image link
+$ goris get link 5th-element
 Try to Generate gopher link...
 <img src="https://raw.githubusercontent.com/scraly/gophers/main/5th-element.png" alt="5th-element">
 5th-element! I choose you! Paste above link in the readme!
 ```
 
-`view` command
+##### `view` command
 ```bash
-> goris view 5th-element
+# pop up a gopher image window
+$ goris view 5th-element
 Pop-up 5th-element window!
+```
+
+## Run in Docker:
+Required
+- Install docker
+
+### Run process
+Step1: Pull docker image(borischen0203/goris)
+```bash
+docker pull borischen0203/goris
+```
+Step2:  Run docker image as below command
+```bash
+docker run -it --rm borischen0203/goris
+```
+
+## Run in Local:
+
+Required
+- Install go(version >= 1.6)
+- Install `make` cli(https://formulae.brew.sh/formula/make)
+```bash
+brew install make
+```
+
+### Run process
+Step1: Clone the repo
+```bash
+git clone https://github.com/borischen0203/goris.git
+```
+Step2: Use `make` to execute makefile run build
+```bash
+make build
+```
+Step3: Execute build file with or with command
+```bash
+./goris [command]
 ```
 
 ## Tech stack
 - Golang
 - Cobra
+- Docker
+- Github actions
+- Shell
 
 
 

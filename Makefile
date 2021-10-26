@@ -9,7 +9,7 @@ build: clean
 	@echo "Building..."
 	@go build -o ${APP} main.go
 
-all: build test
+all: test build
 
 .PHONY: run
 ## run: runs go run main.go
@@ -28,6 +28,8 @@ clean:
 test:
 	go test -v -count=1 -race ./...
 
+docker_build:
+	docker build . -t ${APP}
 
 .PHONY: help
 ## help: prints this help message
