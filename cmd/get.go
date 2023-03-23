@@ -179,7 +179,7 @@ func gopherSay(gopherName string) {
 	if err != nil {
 		log.Fatal("Error during read gopher ascii file", err)
 	}
-	color.Cyan(string(fileData))
+	fmt.Println(string(fileData))
 }
 
 func init() {
