@@ -26,6 +26,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/fatih/color"
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 )
@@ -82,7 +83,7 @@ func getGopherLink(gopherName string) error {
 		link := "https://raw.githubusercontent.com/scraly/gophers/main/" + gopherName + ".png"
 		result := "<img src=" + "\"" + link + "\"" + " alt=" + "\"" + gopherName + "\"" + ">"
 		fmt.Println(result)
-		fmt.Println(gopherName + "! I choose you! Paste above link in the readme!")
+		color.Cyan(gopherName + "! I choose you! Paste above link in the readme!")
 	} else {
 		fmt.Println("Error: " + gopherName + " not exists! :-(")
 	}
@@ -178,7 +179,7 @@ func gopherSay(gopherName string) {
 	if err != nil {
 		log.Fatal("Error during read gopher ascii file", err)
 	}
-	fmt.Println(string(fileData))
+	color.Cyan(string(fileData))
 }
 
 func init() {
